@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragmente.HomeFragment"
+    android:background="#EFF5F5"
+    android:id="@+id/framehome"
+    android:paddingTop="60dp"
+    android:paddingStart="30dp"
+    android:paddingEnd="30dp">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutInfoPay"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="horizontal"
+        android:background="@drawable/redstroke"
+        >
+
+        <TextView
+            android:id="@+id/adresaTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="20dp"
+            android:hint="Adresa:"
+            android:textColor="@color/black"
+            android:textColorHint="#212121" />
+
+        <TextView
+            android:id="@+id/adresaInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="80dp"
+            android:hint=""
+            android:textColor="@color/black"
+            android:layout_marginEnd="90dp"/>
+
+        <TextView
+            android:id="@+id/nrApartament"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/adresaTV"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="140dp"
+            android:hint="Număr apartament: "
+            android:textColor="@color/black"
+            android:textColorHint="#212121" />
+
+        <TextView
+            android:id="@+id/nrApartamentInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="140dp"
+            android:layout_marginStart="155dp"
+            android:hint=""
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/sumaPlata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/nrApartamentInput"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="25dp"
+            android:hint="Total de plată (RON): "
+            android:layout_marginBottom="100dp"
+            android:textColorHint="#212121"/>
+
+        <TextView
+            android:id="@+id/sumaPlataInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/sumaPlata"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="45dp"
+            android:hint=""
+            android:layout_marginBottom="50dp"
+            android:textSize="30sp"
+            android:textColor="@color/black"/>
+
+
+        <Button
+            android:id="@+id/btn_platesteHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/roundbtn"
+            android:hint="PLĂTEȘTE"
+            android:textColor="@color/white"
+            android:textColorHint="#FFFF" />
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/indexTxtVw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="250dp"
+        android:layout_marginStart="15dp"
+        android:hint="@string/introduceIndex"
+        android:background="@drawable/casetatext"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColorHint="#212121"/>
+
+
+    <TextView
+        android:id="@+id/spinnerTxtVw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="300dp"
+        android:hint="Contor apa:"
+        android:textColorHint="#212121"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/indexInput"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="290dp"
+        android:layout_marginStart="100dp"
+        android:paddingEnd="10dp"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="AR(mc)"
+            android:background="@drawable/justgreenstroke"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/trimiteIndex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="290dp"
+        android:background="@drawable/roundbtn"
+        android:text="Trimite" />
+
+    <ListView
+        android:id="@+id/listViewIndex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="370dp"
+        android:layout_marginBottom="60dp"/>
+
+
+
+
+
+
+</RelativeLayout>

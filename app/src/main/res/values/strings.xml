@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">LicentaApp</string>
+    <string name="noaccount">Nu ai cont? Înregistrează-te <u>AICI</u>.</string>
+    <string name="introduceIndex"><u>Introduceți index</u></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="add_spn_index">
+        <item>Apa</item>
+        <item>Gaze</item>
+        <item>Lumina</item>
+        <item>FABIZ</item>
+    </string-array>
+</resources>
