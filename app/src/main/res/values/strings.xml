@@ -5,10 +5,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string-array name="add_spn_index">
-        <item>Apa</item>
-        <item>Gaze</item>
-        <item>Lumina</item>
-        <item>FABIZ</item>
+    <string-array name="spinnerArray">
+        <item>2021</item>
+        <item>2022</item>
+        <item>2023</item>
     </string-array>
 </resources>

@@ -14,4 +14,12 @@
         <!-- Customize your theme here. -->
         <item name="android:fontFamily">@font/serif</item>
     </style>
+
+    <style name="exampleToast">
+        <item name="backgroundColor">#ff00</item>
+        <item name="android:textColor">#000</item>
+        <item name="strokeColor">#000</item>
+        <item name="strokeWidth">3dp</item>
+        <item name="cornerRadius">5dp</item>
+    </style>
 </resources>

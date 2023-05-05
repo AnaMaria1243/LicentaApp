@@ -34,7 +34,6 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
 
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,7 +124,6 @@ public class RegisterActivity extends AppCompatActivity {
                             hashMap.put("adresa",adresa);
                             hashMap.put("apartament",nrAp);
                             hashMap.put("sumaDePlata","");
-                            hashMap.put("istoricPlati","");
                             //firebase instance
                             FirebaseDatabase database=FirebaseDatabase.getInstance();
                             //path to store data

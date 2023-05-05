@@ -4,6 +4,7 @@ import static androidx.constraintlayout.widget.ConstraintLayoutStates.TAG;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +22,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.licentaapp.HomeActivity;
 import com.example.licentaapp.IndexAdapter;
+import com.example.licentaapp.LoginActivity;
 import com.example.licentaapp.R;
+import com.github.kittinunf.fuel.Fuel;
+import com.github.kittinunf.fuel.core.FuelError;
+import com.github.kittinunf.fuel.core.Handler;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -31,6 +39,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.stripe.android.PaymentConfiguration;
+import com.stripe.android.paymentsheet.PaymentSheet;
+import com.stripe.android.paymentsheet.PaymentSheetResult;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -40,6 +54,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.SimpleTimeZone;
+
+import es.dmoral.toasty.Toasty;
 
 
 public class HomeFragment extends Fragment {
@@ -50,7 +67,12 @@ public class HomeFragment extends Fragment {
     TextInputLayout indexInput;
     ListView listView;
     //ArrayAdapter<String>adapter;
-    ArrayList<String> indexList;
+    ArrayList<String> indexList,payList;
+
+
+    PaymentSheet paymentSheet;
+    String paymentIntentClientSecret,amount;
+    PaymentSheet.CustomerConfiguration customerConfig;
 
 
 
@@ -69,23 +91,29 @@ public class HomeFragment extends Fragment {
         indexInput=view.findViewById(R.id.indexInput);
         listView=view.findViewById(R.id.listViewIndex);
         indexList=new ArrayList<>();
+        payList=new ArrayList<>();
        // adapter=new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1,indexList);
         IndexAdapter adapter=new IndexAdapter(getContext(),R.layout.adapter_index,indexList);
         listView.setAdapter(adapter);
 
 
+        payHomeBtn.setOnClickListener(v ->{
+            if (TextUtils.isEmpty(totalPlata.getText()
+                    .toString())||totalPlata.getText()=="0"){
+                Toast.makeText(getContext(), "Nu aveti plăți de făcut!", Toast.LENGTH_SHORT).show();
+
+            } else {
+                amount = totalPlata.getText().toString() + "00";
+                getDetails();
+
+            }
+        });
+
+        paymentSheet = new PaymentSheet(this, this::onPaymentSheetResult);
 
 
 
-//        sendIndex.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String index=indexInput.getEditText().getText().toString();
-//                listaIndex.add(index);
-//                listViewIndex.setAdapter(arrayAdapter);
-//                arrayAdapter.notifyDataSetChanged();
-//            }
-//        });
+
 
 
         sendIndex.setOnClickListener(new View.OnClickListener() {
@@ -110,58 +138,13 @@ public class HomeFragment extends Fragment {
 
 
 
-        payHomeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contentFrame, new PayFragment()).commit();
-            }
-        });
-
-//        istoricIndex.setOnClickListener(new View.OnClickListener() {
+//        payHomeBtn.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                Intent intent = new Intent(getActivity(), IndexActivity.class);
-//                startActivity(intent);
-//                ((Activity) getActivity()).overridePendingTransition(0, 0);
+//                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contentFrame, new PayFragment()).commit();
 //            }
 //        });
-//        try {
-//            user= FirebaseAuth.getInstance().getCurrentUser();
-//            reference= FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid());
-//            reference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                //Client client=new Client(String id, String codClient, String adresa, String email, String sumaPlata, String nrAp);
-//               // String adresa1=snapshot.child("adresa").getValue().toString();
-//                //adresa.setText(adresa1);
-////                HashMap<String,Object>hashMap=new HashMap<>();
-////                hashMap.put("adresa",adresa.getText().toString());
-//
-//               // Client client=snapshot.getValue(Client.class);
-////                //client.writeNewPost("shoX2Q6uljdbgAmeo95mbEzCsH23","aaa","aaa","aaa");
-////
-////
-//                for (DataSnapshot data: snapshot.getChildren()){
-//                    String adresa1=""+data.child("adresa").getValue();
-//                    String nrappp=""+data.child("apartament").getValue();
-//                    String plata=""+data.child("sumaDePlata").getValue();
-//
-//                    adresa.setText(adresa1);
-//                    nrApartament.setText(nrappp);
-//                    totalPlata.setText(plata);
-//                }
-//
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+
 
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
@@ -221,5 +204,72 @@ public class HomeFragment extends Fragment {
 
         return view;
     }
+
+    private void getDetails() {
+        Fuel.INSTANCE.post("https://us-central1-licentaapp-5200c.cloudfunctions.net/stripePayment?amt="+amount,null).responseString(new Handler<String>() {
+            @Override
+            public void success(String s) {
+                try {
+                    JSONObject result=new JSONObject(s);
+                    customerConfig = new PaymentSheet.CustomerConfiguration(
+                            result.getString("customer"),
+                            result.getString("ephemeralKey")
+                    );
+                    paymentIntentClientSecret = result.getString("paymentIntent");
+                    PaymentConfiguration.init(getContext(), result.getString("publishableKey"));
+                    showStripePaymentSheet();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+
+            @Override
+            public void failure(@NonNull FuelError fuelError) {
+
+            }
+        });
+
+
+    }
+
+
+
+    private void showStripePaymentSheet(){
+        final PaymentSheet.Configuration configuration = new PaymentSheet.Configuration.Builder("coDeR")
+                .customer(customerConfig)
+                .allowsDelayedPaymentMethods(true)
+                .build();
+        paymentSheet.presentWithPaymentIntent(
+                paymentIntentClientSecret,
+                configuration
+        );
+
+    }
+
+   private void onPaymentSheetResult(final PaymentSheetResult paymentSheetResult){
+
+        if (paymentSheetResult instanceof PaymentSheetResult.Canceled) {
+            Toast.makeText(getContext(), "Tranzacție anulată!", Toast.LENGTH_SHORT).show();
+        } else if (paymentSheetResult instanceof PaymentSheetResult.Failed) {
+            Toasty.error(getContext(), "Tranzacție eșuată!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), ((PaymentSheetResult.Failed) paymentSheetResult).getError().toString() , Toast.LENGTH_SHORT).show();
+        } else if (paymentSheetResult instanceof PaymentSheetResult.Completed) {
+            //Toast.makeText(getContext(), "Tranzacție cu succes!", Toast.LENGTH_SHORT).show();
+            Toasty.success(getContext(),"Tranzacție cu succes!",Toast.LENGTH_SHORT).show();
+            totalPlata.setText("0");
+             Date currentTime = Calendar.getInstance().getTime();
+            SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+            String formattedDate = df.format(currentTime);
+            SimpleDateFormat df2=new SimpleDateFormat("hh:mm",Locale.getDefault());
+            String formattedTime= df2.format(currentTime);
+            payList.add("Tranzacția: "+customerConfig.getId().toUpperCase()+" din data: "+formattedDate+" ora: "+formattedTime+" a fost inregistrată!");
+            reference.child("istoricPlăți").setValue(payList);
+        }
+
+    }
+
 
 }
