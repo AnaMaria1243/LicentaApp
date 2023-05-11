@@ -14,7 +14,9 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.licentaapp.IndexAdapter;
 import com.example.licentaapp.R;
+import com.example.licentaapp.TransactionsAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -34,6 +36,7 @@ public class PayFragment extends Fragment {
     ArrayList<String> transactionsList=new ArrayList<>();
     ArrayAdapter<String> adapter;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_pay, container, false);
@@ -41,8 +44,8 @@ public class PayFragment extends Fragment {
 
         textViewTitle=view.findViewById(R.id.txtViewTitle);
         listViewTransaction=view.findViewById(R.id.listViewTransaction);
-        spinnerYear=view.findViewById(R.id.spinnerPayFragment);
-        adapter=new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1,transactionsList);
+       // adapter=new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1,transactionsList);
+        TransactionsAdapter adapter=new TransactionsAdapter(getContext(),R.layout.adapter_transactions,transactionsList);
         listViewTransaction.setAdapter(adapter);
 
 

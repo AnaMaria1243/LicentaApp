@@ -21,29 +21,31 @@
         android:textColor="@color/black"/>
 
 
-    <Spinner
-        android:id="@+id/spinnerPayFragment"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/txtViewTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="20dp"
-        android:entries="@array/spinnerArray"
-        android:textAlignment="center"
-        android:background="@drawable/pinkstroke"/>
+<!--    <Spinner-->
+<!--        android:id="@+id/spinnerPayFragment"-->
+<!--        android:layout_width="120dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/txtViewTitle"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:entries="@array/spinnerArray"-->
+<!--        android:textAlignment="center"-->
+<!--        android:background="@drawable/pinkstroke"/>-->
     
     <ListView
         android:id="@+id/listViewTransaction"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="500dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spinnerPayFragment"
+        app:layout_constraintTop_toBottomOf="@id/txtViewTitle"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginTop="40dp"/>
+        android:layout_marginTop="40dp"
+        android:dividerHeight="10.0sp"
+        android:divider="@android:color/transparent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

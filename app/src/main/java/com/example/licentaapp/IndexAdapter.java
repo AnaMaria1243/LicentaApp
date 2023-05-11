@@ -7,10 +7,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
+
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class IndexAdapter extends ArrayAdapter<String>{
     private Context mContext;
