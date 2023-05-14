@@ -46,7 +46,7 @@ public class PayFragment extends Fragment {
         listViewTransaction=view.findViewById(R.id.listViewTransaction);
        // adapter=new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1,transactionsList);
         TransactionsAdapter adapter=new TransactionsAdapter(getContext(),R.layout.adapter_transactions,transactionsList);
-        listViewTransaction.setAdapter(adapter);
+       // listViewTransaction.setAdapter(adapter);
 
 
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -54,10 +54,15 @@ public class PayFragment extends Fragment {
         reference.child("istoricPlăți").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                    String value=""+snapshot.getValue();
-                if (!transactionsList.contains(value)) {
-                    transactionsList.add(value);
-                    adapter.notifyDataSetChanged();
+//                    String value=""+snapshot.getValue();
+//                if (!transactionsList.contains(value)) {
+//                    transactionsList.add(value);
+//                    adapter.notifyDataSetChanged();
+//                }
+                String value=""+snapshot.getValue(String.class);
+                if(!transactionsList.contains(value)){
+                transactionsList.add(snapshot.getValue(String.class));
+                adapter.notifyDataSetChanged();
                 }
             }
 
@@ -81,6 +86,7 @@ public class PayFragment extends Fragment {
 
             }
         });
+        listViewTransaction.setAdapter(adapter);
 
 
         return view;
