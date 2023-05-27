@@ -25,10 +25,6 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -153,9 +149,18 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()){
                             pd.dismiss();
                             FirebaseUser user= firebaseAuth.getCurrentUser();
-                            startActivity(new Intent(LoginActivity.this,HomeActivity.class));
-                            finish();
-                        }else{
+                            String email = user.getEmail();
+                            if (email != null) {
+                                if (email.contains("@admin.com")) {
+                                    startActivity(new Intent(LoginActivity.this, AdminActivity.class));
+                                } else {
+                                    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                                }
+                                finish();
+//                            startActivity(new Intent(LoginActivity.this,HomeActivity.class));
+//                            finish();
+                            }
+                            }else{
                             pd.dismiss();
                             Toast.makeText(LoginActivity.this, "Autentificare esuata!", Toast.LENGTH_SHORT).show();
                         }

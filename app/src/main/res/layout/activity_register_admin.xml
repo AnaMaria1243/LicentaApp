@@ -4,62 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity"
+    tools:context=".RegisterAdminActivity"
     android:background="#497174">
 
-    <TextView
-        android:id="@+id/text1_register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
-        android:background="@drawable/casetatext"
-        android:text="      Crearea contului se realizază cu ajutorul codului de client de forma Axxxxxx(ex.A123456).Codul de client se regăsește pe:nota de plată,factura emisa de asociatie sau solicitați-l de la administratorul asociației "
-        android:textSize="15dp"
-        android:textColor="@color/pink"
-        android:textAlignment="center"
-        android:fontFamily="@font/notoserif"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/text_noaccountadmin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/text1_register"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/til_codclient"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="15dp"
-        android:text="@string/noaccountadmin"
-        android:textColor="@color/white"/>
-
-
-    <!--    <TextView-->
-<!--        android:id="@+id/text2_register"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="30dp"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:layout_marginEnd="30dp"-->
-<!--        android:text=" ●Nota de plată                                          ●Factura emisă de asociație               ●Solicitați-l de la administratorul     asociației"-->
-<!--        android:textSize="18dp"-->
-<!--        android:background="@drawable/casetatext"-->
-<!--        android:textAlignment="center"-->
-<!--        android:textColor="@color/pink"-->
-<!--        android:fontFamily="@font/notoserif"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/text1_register"/>-->
-
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_codclient"
+        android:id="@+id/til_numeadmin"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_noaccountadmin"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="90dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        app:startIconDrawable="@drawable/ic_baseline_person_24"
+        android:textColorHint="@color/white">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiet_numeadmin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bordertextinput"
+            android:hint="Nume"
+            android:textColorHint="@color/black" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_prenumeadmin"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/til_numeadmin"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="15dp"
@@ -70,21 +48,21 @@
         android:textColorHint="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiet_codclient"
+            android:id="@+id/tiet_prenumeadmin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bordertextinput"
-            android:hint="Cod Client"
+            android:hint="Prenume"
             android:textColorHint="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_mail"
+        android:id="@+id/til_mailadmin"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/til_codclient"
+        app:layout_constraintTop_toBottomOf="@id/til_prenumeadmin"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="15dp"
@@ -96,7 +74,7 @@
         app:startIconDrawable="@drawable/ic_baseline_mail_24">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiet_mail"
+            android:id="@+id/tiet_mailadmin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bordertextinput"
@@ -106,62 +84,11 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_adresa"
+        android:id="@+id/til_passwordregisteradmin"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/til_mail"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        app:startIconDrawable="@drawable/ic_baseline_location_on_24"
-        android:textColorHint="@color/white">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiet_adresa"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bordertextinput"
-            android:hint="Adresa"
-            android:textColorHint="@color/black" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_nrAp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/til_adresa"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        app:startIconDrawable="@drawable/ic_baseline_sensor_door_24"
-        android:textColorHint="@color/white">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiet_nrAp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bordertextinput"
-            android:hint="Număr apartament"
-            android:inputType="number"
-            android:textColorHint="@color/black"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_passwordregister"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/til_nrAp"
+        app:layout_constraintTop_toBottomOf="@id/til_mailadmin"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="15dp"
@@ -183,11 +110,11 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_passwordregisterrepeat"
+        android:id="@+id/til_passwordregisterrepeatadmin"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/til_passwordregister"
+        app:layout_constraintTop_toBottomOf="@id/til_passwordregisteradmin"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="15dp"
@@ -208,18 +135,19 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-
     <Button
-        android:id="@+id/btn_register"
+        android:id="@+id/btn_registeradmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="30dp"
         android:text="Înregistrează-mă"
         app:backgroundTint="@null"
         android:background="@drawable/roundbtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/til_passwordregisterrepeat"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/til_passwordregisterrepeatadmin" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

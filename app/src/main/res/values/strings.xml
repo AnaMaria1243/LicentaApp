@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">LicentaApp</string>
     <string name="noaccount">Nu ai cont? Înregistrează-te <u>AICI</u>.</string>
+    <string name="noaccountadmin">Ești administrator?Înregistrează-te <u>AICI</u>.</string>
     <string name="introduceIndex"><u>Introduceți index</u></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -10,4 +11,15 @@
         <item>2022</item>
         <item>2023</item>
     </string-array>
+    <string name="title_activity_admin">AdminActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
 </resources>

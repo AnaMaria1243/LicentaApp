@@ -22,4 +22,13 @@
         <item name="strokeWidth">3dp</item>
         <item name="cornerRadius">5dp</item>
     </style>
+
+    <style name="Theme.LicentaApp.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.LicentaApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.LicentaApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

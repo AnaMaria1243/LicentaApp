@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.licentaapp.Clase.Client;
@@ -30,6 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
 
      TextInputLayout til_clientCode,til_email,til_passwordRegister,til_repeatPassword,til_adresa,til_nrAp;
      Button registerBtn;
+     TextView noAccountAdmin;
 
     private FirebaseAuth firebaseAuth;
 
@@ -52,10 +54,23 @@ public class RegisterActivity extends AppCompatActivity {
         til_adresa=findViewById(R.id.til_adresa);
         til_nrAp=findViewById(R.id.til_nrAp);
         registerBtn=findViewById(R.id.btn_register);
+        noAccountAdmin=findViewById(R.id.text_noaccountadmin);
 
         firebaseAuth=FirebaseAuth.getInstance();
 
         registerBtn.setOnClickListener(getRegisterEvent());
+        noAccountAdmin.setOnClickListener(getRegisterAdminEvent());
+    }
+
+    private View.OnClickListener getRegisterAdminEvent() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RegisterAdminActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        };
     }
 
     private View.OnClickListener getRegisterEvent() {
@@ -116,20 +131,33 @@ public class RegisterActivity extends AppCompatActivity {
 
                             String mail=user.getEmail();
                             String uid=user.getUid();
-                            //cand utilizatorul s-a logat sa stocheze infromatiile si in realtie database
-                            HashMap<Object,String> hashMap=new HashMap<>();
-                            hashMap.put("email",mail);
-                            hashMap.put("uid",uid);
-                            hashMap.put("codClient",clientCode);
-                            hashMap.put("adresa",adresa);
-                            hashMap.put("apartament",nrAp);
-                            hashMap.put("sumaDePlata","");
+                            if (email.contains("@admin.com")) {
+                                HashMap<Object,String> hashMap=new HashMap<>();
+                                hashMap.put("email",mail);
+                                hashMap.put("uid",uid);
+                                //firebase instance
+                                FirebaseDatabase database=FirebaseDatabase.getInstance();
+                                //path to store data
+                                DatabaseReference reference=database.getReference("Administratori");
+                                //put data within hashmap in database
+                                reference.child(uid).setValue(hashMap);
+                            }else{
+
+
+                                //cand utilizatorul s-a logat sa stocheze infromatiile si in realtie database
+                            HashMap<Object,String> hashMap1=new HashMap<>();
+                            hashMap1.put("email",mail);
+                            hashMap1.put("uid",uid);
+                            hashMap1.put("codClient",clientCode);
+                            hashMap1.put("adresa",adresa);
+                            hashMap1.put("apartament",nrAp);
+                            hashMap1.put("sumaDePlata","");
                             //firebase instance
                             FirebaseDatabase database=FirebaseDatabase.getInstance();
                             //path to store data
                             DatabaseReference reference=database.getReference("Users");
                             //put data within hashmap in database
-                            reference.child(uid).setValue(hashMap);
+                            reference.child(uid).setValue(hashMap1);}
 
                             startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                             finish();
