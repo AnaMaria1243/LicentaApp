@@ -152,7 +152,7 @@ public class LoginActivity extends AppCompatActivity {
                             String email = user.getEmail();
                             if (email != null) {
                                 if (email.contains("@admin.com")) {
-                                    startActivity(new Intent(LoginActivity.this, AdminActivity.class));
+                                    startActivity(new Intent(LoginActivity.this, AdminMenuActivity.class));
                                 } else {
                                     startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                                 }
