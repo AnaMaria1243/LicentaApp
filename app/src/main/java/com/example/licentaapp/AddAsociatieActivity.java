@@ -76,9 +76,9 @@ public class AddAsociatieActivity extends AppCompatActivity {
                 hashMap2.put("numeAsociatie",text1);
                 hashMap2.put("adresaAsociatie",text2);
                 hashMap2.put("nrEtaje",text3);
-                hashMap2.put("totalApartamente",text4);
-                hashMap2.put("suprafata",text6);
-                hashMap2.put("presedinteleAsociatiei",text5);
+                hashMap2.put("totalAp",text4);
+                hashMap2.put("suprafataComuna",text6);
+                hashMap2.put("presedintele",text5);
                 hashMap2.put("spatiuVerde",spatiuVerde.toString());
                 asociatiiList.add(hashMap2);
 

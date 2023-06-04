@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,7 +13,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.licentaapp.Clase.Client;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -123,7 +121,7 @@ public class RegisterActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             Toast.makeText(RegisterActivity.this, "Inregistrarea a fost realizata cu succes!", Toast.LENGTH_SHORT).show();
                             FirebaseUser user=firebaseAuth.getCurrentUser();
-                            Client client=new Client();
+                           // Client client=new Client();
 
                             String clientCode=til_clientCode.getEditText().getText().toString().trim();
                             String adresa=til_adresa.getEditText().getText().toString().trim();
