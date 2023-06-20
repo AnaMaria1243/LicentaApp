@@ -16,10 +16,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.licentaapp.Clase.Mesaj;
 import com.example.licentaapp.MesajeAdapter;
 import com.example.licentaapp.PDFAdapter;
 import com.example.licentaapp.R;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -31,6 +33,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 
 
@@ -60,32 +63,63 @@ public class ForumFragment extends Fragment {
         MesajeAdapter adapter=new MesajeAdapter(getContext(),R.layout.adapter_mesaj,mesajeList);
         listViewMesaje.setAdapter(adapter);
         reference = FirebaseDatabase.getInstance().getReference().child("Mesaje");
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
 
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Date currentTime = Calendar.getInstance().getTime();
-                SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-                String formattedDate = df.format(currentTime);
-                String text=mesajInput.getEditText().getText().toString();
-                    mesajeList.add(text);
-                    //reference = FirebaseDatabase.getInstance().getReference().child("Mesaje");
-                     listViewMesaje.setAdapter(adapter);
-                    reference.setValue(mesajeList);
-                    adapter.notifyDataSetChanged();
+                FirebaseUser user1 = FirebaseAuth.getInstance().getCurrentUser();
+                if (user1 != null) {
+                    String userEmail = user1.getEmail();
+                    Date currentTime = Calendar.getInstance().getTime();
+                    SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+                    String formattedDate = df.format(currentTime);
+                    SimpleDateFormat df2=new SimpleDateFormat("hh:mm",Locale.getDefault());
+                    String formattedTime= df2.format(currentTime);
+                    String oraData=formattedDate+" "+formattedTime;
+                    String content = mesajInput.getEditText().getText().toString();
 
+                    if (!TextUtils.isEmpty(content)) {
+                        HashMap<String, String> messageMap = new HashMap<>();
+                        messageMap.put("user", userEmail);
+                        messageMap.put("date", oraData);
+                        messageMap.put("content", content);
+
+                        reference.push().setValue(messageMap);
+                        mesajInput.getEditText().setText(""); // Clear the input field after sending
+                    } else {
+                        Toast.makeText(getContext(), "Introduceti mesajul!", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
+
 
         reference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                String value=""+snapshot.getValue();
-                if (!mesajeList.contains(value)) {
-                    mesajeList.add(value);
-                    adapter.notifyDataSetChanged();
-                }
+                HashMap<String, String> messageMap = (HashMap<String, String>) snapshot.getValue();
+                if (messageMap != null) {
+                    String email = messageMap.get("user");
+                    String date = messageMap.get("date");
+                    String content = messageMap.get("content");
 
+                    if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(date) && !TextUtils.isEmpty(content)) {
+                        String displayText = email + " | " + date + " | " + content;
+                        if (!mesajeList.contains(displayText)) {
+                            mesajeList.add(displayText);
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+
+                    listViewMesaje.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            listViewMesaje.smoothScrollToPosition(adapter.getCount() - 1);
+                        }
+                    }, 200);
+                }
             }
 
             @Override
@@ -107,7 +141,9 @@ public class ForumFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+
         });
+
         return view;
     }
 }

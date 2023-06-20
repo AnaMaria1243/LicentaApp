@@ -37,9 +37,6 @@ public class AsociatiiFragment extends Fragment {
 
     DatabaseReference reference;
     FirebaseUser user;
-//    ArrayList<HashMap> asociatiiList=new ArrayList<>();
-//    ArrayAdapter<HashMap> adapter;
-//    ListView listView;
 
     FloatingActionButton fab;
     RecyclerView recyclerView;
@@ -49,7 +46,7 @@ public class AsociatiiFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view= inflater.inflate(R.layout.fragment_asociatii, container, false);
         fab=view.findViewById(R.id.floatingActionButton);
         recyclerView=view.findViewById(R.id.recycleViewAdmin);
@@ -62,7 +59,6 @@ public class AsociatiiFragment extends Fragment {
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference().child("Administratori").child(user.getUid());
-        //recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         asociatiiList=new ArrayList<>();
         adapter=new RecycleViewAsociatiiAdapter(getContext(),asociatiiList);
@@ -70,11 +66,16 @@ public class AsociatiiFragment extends Fragment {
         reference.child("Asociatii").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                asociatiiList.clear();
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()){
                     Asociatie asociatie=dataSnapshot.getValue(Asociatie.class);
-                    asociatiiList.add(asociatie);
+                    if (!asociatiiList.contains(asociatie)) {
+                        asociatiiList.add(asociatie);
+                        adapter.notifyDataSetChanged();
+                    }
                 }
                 adapter.notifyDataSetChanged();
+                recyclerView.scrollToPosition(asociatiiList.size()-1);
             }
 
             @Override
@@ -82,37 +83,6 @@ public class AsociatiiFragment extends Fragment {
 
             }
         });
-//        reference.child("Asociatii").addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//                HashMap<String, Object> hm = (HashMap<String, Object>) snapshot.getValue();
-//                if (!asociatiiList.contains(hm)) {
-//                    asociatiiList.add(hm);
-//                    adapter.notifyDataSetChanged();
-//                }
-//            }
-//
-//            @Override
-//            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//
-//            }
-//
-//            @Override
-//            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-//
-//            }
-//
-//            @Override
-//            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-
 
         return view;
     }

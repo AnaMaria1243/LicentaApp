@@ -29,6 +29,8 @@ import com.example.licentaapp.R;
 import com.github.kittinunf.fuel.Fuel;
 import com.github.kittinunf.fuel.core.FuelError;
 import com.github.kittinunf.fuel.core.Handler;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,6 +40,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 import com.stripe.android.PaymentConfiguration;
 import com.stripe.android.paymentsheet.PaymentSheet;
@@ -48,6 +51,7 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -112,29 +116,55 @@ public class HomeFragment extends Fragment {
         paymentSheet = new PaymentSheet(this, this::onPaymentSheetResult);
 
 
-
-
-
-
         sendIndex.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Date currentTime = Calendar.getInstance().getTime();
                 SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
                 String formattedDate = df.format(currentTime);
-                String text=indexInput.getEditText().getText().toString();
-                if(!TextUtils.isEmpty(text)){
-                    String text2=text+"  Transmis la data de: "+formattedDate;
-                    indexList.add(text2);
-                   // listView.setAdapter(adapter);
-                    reference.child("index").setValue(indexList);
-                    adapter.notifyDataSetChanged();
-                    Toast.makeText(getContext(), "Index adăugat!", Toast.LENGTH_SHORT).show();
-                }else{
+                String text = indexInput.getEditText().getText().toString();
+
+                if (!TextUtils.isEmpty(text)) {
+                    int newIndex = Integer.parseInt(text);
+                    boolean maiMare = true;
+
+                    for (String indexItem : indexList) {
+                        int previousIndex = extragereIndex(indexItem);
+
+                        if (newIndex <= previousIndex) {
+                            maiMare = false;
+                            break;
+                        }
+                    }
+
+                    if (maiMare) {
+                        String text2 = text + "  Transmis la data de: " + formattedDate;
+                        indexList.add(text2);
+                        reference.child("index").setValue(indexList);
+                        adapter.notifyDataSetChanged();
+                        Toast.makeText(getContext(), "Index adăugat!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getContext(), "Indexul introdus trebuie să fie mai mare decât valorile anterioare!", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
                     Toast.makeText(getContext(), "Introduceti index!", Toast.LENGTH_SHORT).show();
                 }
             }
+
+            private int extragereIndex(String item) {
+                String[] parts = item.split(" ");
+                if (parts.length > 0) {
+                    try {
+                        return Integer.parseInt(parts[0]);
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                return -1;
+            }
         });
+
 
 
 
@@ -265,8 +295,26 @@ public class HomeFragment extends Fragment {
             String formattedDate = df.format(currentTime);
             SimpleDateFormat df2=new SimpleDateFormat("hh:mm",Locale.getDefault());
             String formattedTime= df2.format(currentTime);
-            payList.add("Tranzacția: "+customerConfig.getId().toUpperCase()+" din data: "+formattedDate+" ora: "+formattedTime+" a fost inregistrată!");
-            reference.child("istoricPlăți").setValue(payList);
+//            payList.add("Tranzacția: "+customerConfig.getId().toUpperCase()+" din data: "+formattedDate+" ora: "+formattedTime+" a fost inregistrată!");
+//            reference.child("istoricPlăți").setValue(payList);
+
+            reference.child("istoricPlăți").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    ArrayList<String> payList = new ArrayList<>();
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        String transaction = snapshot.getValue(String.class);
+                        payList.add(transaction);
+                    }
+                    payList.add("Tranzacția: "+customerConfig.getId().toUpperCase()+" din data: "+formattedDate+" ora: "+formattedTime+" a fost inregistrată!");
+                    reference.child("istoricPlăți").setValue(payList);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    // Handle potential errors here
+                }
+            });
         }
 
     }

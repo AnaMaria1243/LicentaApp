@@ -14,38 +14,18 @@ public class Asociatie  {
     private SpatiuVerde spatiuVerde;
     private String presedintele;
 
-//    public Asociatie(String numeAsociatie, String adresa, int nrEtaje, int totalAp, float suprafataComuna, SpatiuVerde spatiuVerde, String presedintele) {
-//        this.numeAsociatie = numeAsociatie;
-//        this.adresa = adresa;
-//        this.nrEtaje = nrEtaje;
-//        this.totalAp = totalAp;
-//        this.suprafataComuna = suprafataComuna;
-//        this.spatiuVerde = spatiuVerde;
-//        this.presedintele = presedintele;
-//    }
-//
-//    public Asociatie(Parcel parcel) {
-//        this.numeAsociatie= parcel.readString();
-//        this.adresa= parcel.readString();
-//        this.nrEtaje = parcel.readInt();
-//        this.spatiuVerde = SpatiuVerde.valueOf(parcel.readString());
-//        this.suprafataComuna = parcel.readFloat();
-//        this.presedintele= parcel.readString();
-//
-//    }
-//
-//
-//    public static final Creator<Asociatie> CREATOR = new Creator<Asociatie>() {
-//        @Override
-//        public Asociatie createFromParcel(Parcel in) {
-//            return new Asociatie(in);
-//        }
-//
-//        @Override
-//        public Asociatie[] newArray(int size) {
-//            return new Asociatie[size];
-//        }
-//    };
+    public Asociatie() {
+    }
+
+    public Asociatie(String numeAsociatie, String adresaAsociatie, String nrEtaje, String totalAp, String suprafataComuna, SpatiuVerde spatiuVerde, String presedintele) {
+        this.numeAsociatie = numeAsociatie;
+        this.adresaAsociatie = adresaAsociatie;
+        this.nrEtaje = nrEtaje;
+        this.totalAp = totalAp;
+        this.suprafataComuna = suprafataComuna;
+        this.spatiuVerde = spatiuVerde;
+        this.presedintele = presedintele;
+    }
 
     public String getNumeAsociatie() {
         return numeAsociatie;
@@ -104,32 +84,5 @@ public class Asociatie  {
     }
 
 
-//    @Override
-//    public String toString() {
-//        return "Asociatie{" +
-//                "numeAsociatie='" + numeAsociatie + '\'' +
-//                ", adresa='" + adresa + '\'' +
-//                ", nrEtaje=" + nrEtaje +
-//                ", totalAp=" + totalAp +
-//                ", suprafataComuna=" + suprafataComuna +
-//                ", spatiuVerde='" + spatiuVerde + '\'' +
-//                ", presedintele='" + presedintele + '\'' +
-//                '}';
-//    }
-//
-//    @Override
-//    public int describeContents() {
-//        return 0;
-//    }
-//
-//    @Override
-//    public void writeToParcel(Parcel parcel, int i) {
-//        parcel.writeString(numeAsociatie);
-//        parcel.writeString(adresa);
-//        parcel.writeInt(nrEtaje);
-//        parcel.writeInt(totalAp);
-//        parcel.writeFloat(suprafataComuna);
-//        parcel.writeString(spatiuVerde.name());
-//        parcel.writeString(presedintele);
-//    }
+
 }

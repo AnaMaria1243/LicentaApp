@@ -35,6 +35,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         actionBar=getSupportActionBar();
+        actionBar.setTitle("");
 //        //back btn
 //        actionBar.setDisplayHomeAsUpEnabled(true);
 //        actionBar.setDisplayShowHomeEnabled(true);

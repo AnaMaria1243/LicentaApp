@@ -53,43 +53,74 @@ public class MesajeAdapter extends ArrayAdapter<String>  {
         return position;
     }
 
+//    @Override
+//    public View getView(int position, View convertView, ViewGroup parent) {
+//        if (convertView == null) {
+//            LayoutInflater inflater = LayoutInflater.from(mContext);
+//            convertView = inflater.inflate(R.layout.adapter_mesaj, parent, false);
+//        }
+//        Date currentTime = Calendar.getInstance().getTime();
+//        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+//        String formattedDate = df.format(currentTime);
+//        SimpleDateFormat df2=new SimpleDateFormat("hh:mm",Locale.getDefault());
+//        String formattedTime= df2.format(currentTime);
+//
+//        TextView textView1 = convertView.findViewById(R.id.tvUtilizator);
+//        ValueEventListener valueEventListener = new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                String txt_ap = dataSnapshot.child("apartament").getValue(String.class);
+//                textView1.setText(user.getEmail()+" Număr apartament: "+txt_ap);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                Log.d(TAG, databaseError.getMessage());
+//            }
+//        };
+//
+//        user = FirebaseAuth.getInstance().getCurrentUser();
+//        reference = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid());
+//        reference.addListenerForSingleValueEvent(valueEventListener);
+//
+//
+//       // TextView textView1 = convertView.findViewById(R.id.tvUtilizator);
+//        TextView textView2=convertView.findViewById(R.id.tvMesaj);
+//        TextView textView3=convertView.findViewById(R.id.tvOraMesaj);
+//        textView2.setText(mItems.get(position));
+//        textView3.setText("ora:"+formattedTime+"  data:"+formattedDate);
+//        //textView1.setText(user.getEmail());
+//
+//        return convertView;
+//    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(mContext);
             convertView = inflater.inflate(R.layout.adapter_mesaj, parent, false);
         }
-        Date currentTime = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-        String formattedDate = df.format(currentTime);
-        SimpleDateFormat df2=new SimpleDateFormat("hh:mm",Locale.getDefault());
-        String formattedTime= df2.format(currentTime);
 
         TextView textView1 = convertView.findViewById(R.id.tvUtilizator);
-        ValueEventListener valueEventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String txt_ap = dataSnapshot.child("apartament").getValue(String.class);
-                textView1.setText(user.getEmail()+" Număr apartament: "+txt_ap);
-            }
+        TextView textView2 = convertView.findViewById(R.id.tvMesaj);
+        TextView textView3 = convertView.findViewById(R.id.tvOraMesaj);
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.d(TAG, databaseError.getMessage());
-            }
-        };
+        String message = mItems.get(position);
+        String[] messageParts = message.split(" \\| ");
 
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid());
-        reference.addListenerForSingleValueEvent(valueEventListener);
+        if (messageParts.length == 3) {
+            String email = messageParts[0];
+            String date = messageParts[1];
+            String content = messageParts[2];
 
-       // TextView textView1 = convertView.findViewById(R.id.tvUtilizator);
-        TextView textView2=convertView.findViewById(R.id.tvMesaj);
-        TextView textView3=convertView.findViewById(R.id.tvOraMesaj);
-        textView2.setText(mItems.get(position));
-        textView3.setText("ora:"+formattedTime+"  data:"+formattedDate);
-        //textView1.setText(user.getEmail());
+            textView1.setText(email);
+            textView2.setText(content);
+            textView3.setText(date);
+        }
 
         return convertView;
     }
+
 }
+
+

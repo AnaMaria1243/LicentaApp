@@ -8,10 +8,12 @@
     android:layout_margin="16dp">
 
     <LinearLayout
+        android:id="@+id/linearlayoutTotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@drawable/casetarecycleview">
+
 
         <LinearLayout
 
@@ -41,7 +43,7 @@
          </LinearLayout>
 
         <LinearLayout
-
+            android:id="@+id/linearlayoutAdresaAsoc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -91,6 +93,13 @@
                 android:textSize="18dp"
                 android:layout_marginLeft="8dp"/>
 
+            <Button
+                android:id="@+id/editBtnAsociatii"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:text="Edit"/>
+
         </LinearLayout>
         <LinearLayout
 
@@ -116,6 +125,14 @@
                 android:textSize="18dp"
                 android:layout_marginLeft="8dp"/>
 
+            <Button
+                android:id="@+id/removeBtnAsociatii"
+                android:layout_width="92dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:text="Șterge" />
+
+
         </LinearLayout>
         <LinearLayout
 
@@ -140,6 +157,7 @@
                 android:textColor="@color/white"
                 android:textSize="18dp"
                 android:layout_marginLeft="8dp"/>
+
 
         </LinearLayout>
 

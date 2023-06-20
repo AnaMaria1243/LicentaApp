@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.licentaapp.Fragmente.AsociatiiFragment;
 import com.example.licentaapp.Fragmente.ContactProprietariFragment;
+import com.example.licentaapp.Fragmente.ForumFragment;
 import com.example.licentaapp.Fragmente.GestionareFragment;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -102,7 +103,7 @@ public class AdminMenuActivity extends AppCompatActivity {
                     fragment=new AsociatiiFragment();
                 }
                 if(item.getItemId() == R.id.nav_contacte) {
-                    fragment=new ContactProprietariFragment();
+                    fragment=new ForumFragment();
                 }
                 openFragment();
                 drawerLayout.closeDrawer(GravityCompat.START);

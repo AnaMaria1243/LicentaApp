@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.licentaapp.Clase.Asociatie;
 import com.example.licentaapp.IndexAdapter;
 import com.example.licentaapp.R;
 import com.example.licentaapp.TransactionsAdapter;
@@ -24,6 +25,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -51,42 +54,64 @@ public class PayFragment extends Fragment {
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid());
-        reference.child("istoricPlăți").addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//                    String value=""+snapshot.getValue();
-//                if (!transactionsList.contains(value)) {
-//                    transactionsList.add(value);
-//                    adapter.notifyDataSetChanged();
-//                }
-                String value=""+snapshot.getValue(String.class);
-                if(!transactionsList.contains(value)){
-                transactionsList.add(snapshot.getValue(String.class));
-                adapter.notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//        reference.child("istoricPlăți").addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+////                    String value=""+snapshot.getValue();
+////                if (!transactionsList.contains(value)) {
+////                    transactionsList.add(value);
+////                    adapter.notifyDataSetChanged();
+////                }
+//                String value=""+snapshot.getValue(String.class);
+//                if(!transactionsList.contains(value)){
+//                transactionsList.add(snapshot.getValue(String.class));
 //                adapter.notifyDataSetChanged();
-            }
+//                }
+//            }
+//
+//            @Override
+//            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+////                adapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+        listViewTransaction.setAdapter(adapter);
 
+        reference.child("istoricPlăți").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                transactionsList.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    String value = dataSnapshot.getValue(String.class);
+                    if (value != null) {
+                        transactionsList.add(value);
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+                adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                // Handle potential errors here
             }
         });
-        listViewTransaction.setAdapter(adapter);
+
+
 
 
         return view;

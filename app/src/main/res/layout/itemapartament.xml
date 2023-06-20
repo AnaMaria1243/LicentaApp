@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="8dp"
+    app:cardCornerRadius="16dp"
+    android:layout_margin="16dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearlayoutTotalAp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/casetarecycleviewap"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp">
+
+        <ImageView
+            android:id="@+id/imageApUsa"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="0dp"
+            android:src="@drawable/usaicon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_nrAp"
+            android:layout_marginStart="20dp"/>
+
+
+        <TextView
+            android:id="@+id/tv_nrAp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:hint="Număr Apartament:"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_nrApInput"
+            app:layout_constraintStart_toEndOf="@id/imageApUsa"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.058"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tv_nrApInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:hint="12"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@id/tv_nrAp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="7dp"
+            tools:layout_editor_absoluteY="5dp" />
+
+        <TextView
+            android:id="@+id/tv_etajApartament"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:hint="Etaj:"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/imageApUsa"
+            app:layout_constraintTop_toBottomOf="@id/tv_nrAp"
+            app:layout_constraintVertical_bias="0.039"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tv_nrEtajInputApartament"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="4dp"
+            android:hint="50"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            app:layout_constraintStart_toEndOf="@id/tv_etajApartament"
+            app:layout_constraintTop_toBottomOf="@id/tv_nrApInput" />
+
+        <TextView
+            android:id="@+id/tv_numeProprietarApartament"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Proprietari:"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_proprietarInputApartament"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/imageApUsa"
+            app:layout_constraintTop_toBottomOf="@id/tv_etajApartament"
+            app:layout_constraintVertical_bias="0.125" />
+
+        <TextView
+            android:id="@+id/tv_proprietarInputApartament"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="7dp"
+            android:hint="Numeeeeeee"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            app:layout_constraintStart_toEndOf="@id/tv_numeProprietarApartament"
+            app:layout_constraintTop_toBottomOf="@id/tv_nrEtajInputApartament" />
+
+        <TextView
+            android:id="@+id/tv_suprafataApartament"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Suprafata(m²):"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_suprafataInputApartament"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/imageApUsa"
+            app:layout_constraintTop_toBottomOf="@id/tv_numeProprietarApartament"
+            app:layout_constraintVertical_bias="0.268" />
+
+        <TextView
+            android:id="@+id/tv_suprafataInputApartament"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="1dp"
+            android:hint="60"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_numeProprietarApartament"
+            app:layout_constraintTop_toBottomOf="@id/tv_proprietarInputApartament"
+            app:layout_constraintVertical_bias="0.243" />
+
+        <TextView
+            android:id="@+id/contactApartament"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Contact:"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/tv_suprafataApartament"
+            app:layout_constraintStart_toEndOf="@id/imageApUsa"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/contactApartamentInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/contactApartament"
+            app:layout_constraintTop_toBottomOf="@id/tv_suprafataInputApartament"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:hint="proprietar@gmail.com"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="2dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
