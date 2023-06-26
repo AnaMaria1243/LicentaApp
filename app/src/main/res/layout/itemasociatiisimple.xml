@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="8dp"
+    app:cardCornerRadius="16dp"
+    android:layout_margin="16dp">
+
+    <LinearLayout
+        android:id="@+id/linearlayoutTotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/casetarecycleview">
+
+
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Numele asociației:"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/tvNumeAsociatieGestiune"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="nume"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:layout_marginLeft="8dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayoutAdresaAsoc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginStart="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Adresa:"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/tvAdresaAsociatieGestiune"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="adresa"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:layout_marginLeft="8dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

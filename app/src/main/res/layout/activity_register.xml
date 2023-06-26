@@ -12,15 +12,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/casetatext"
-        android:text="      Crearea contului se realizază cu ajutorul codului de client de forma Axxxxxx(ex.A123456).Codul de client se regăsește pe:nota de plată,factura emisa de asociatie sau solicitați-l de la administratorul asociației "
-        android:textSize="15dp"
-        android:textColor="@color/pink"
-        android:textAlignment="center"
         android:fontFamily="@font/notoserif"
+        android:text="      Crearea contului se realizază cu ajutorul codului de client de forma Axxxxxx(ex.A123456).Codul de client se regăsește pe:nota de plată,factura emisa de asociatie sau solicitați-l de la administratorul asociației "
+        android:textAlignment="center"
+        android:textColor="@color/pink"
+        android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,23 +37,6 @@
         android:text="@string/noaccountadmin"
         android:textColor="@color/white"/>
 
-
-    <!--    <TextView-->
-<!--        android:id="@+id/text2_register"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="30dp"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:layout_marginEnd="30dp"-->
-<!--        android:text=" ●Nota de plată                                          ●Factura emisă de asociație               ●Solicitați-l de la administratorul     asociației"-->
-<!--        android:textSize="18dp"-->
-<!--        android:background="@drawable/casetatext"-->
-<!--        android:textAlignment="center"-->
-<!--        android:textColor="@color/pink"-->
-<!--        android:fontFamily="@font/notoserif"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/text1_register"/>-->
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_codclient"
@@ -188,6 +172,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/til_passwordregister"
+        app:layout_constraintBottom_toTopOf="@id/btn_register"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="15dp"
@@ -213,13 +198,12 @@
         android:id="@+id/btn_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="15dp"
         android:text="Înregistrează-mă"
         app:backgroundTint="@null"
         android:background="@drawable/roundbtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/til_passwordregisterrepeat"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/til_passwordregisterrepeat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

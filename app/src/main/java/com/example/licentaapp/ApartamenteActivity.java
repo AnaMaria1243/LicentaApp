@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.licentaapp.Clase.Apartament;
@@ -40,6 +41,8 @@ public class ApartamenteActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String asociatieNume = intent.getStringExtra("asociatieNume");
+
+
 
         recyclerViewApartamente=findViewById(R.id.recycleViewApartamente);
         listaApartamente=new ArrayList<>();

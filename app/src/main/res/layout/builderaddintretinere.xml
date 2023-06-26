@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="500dp"
+    android:layout_height="700dp"
+    tools:context=".AddSituatieApartamentActivity"
+    android:background="@color/greenlight">
+
+    <!--    <TextView-->
+<!--        android:id="@+id/tv_nrApIntretinereDialog"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:layout_marginTop="44dp"-->
+<!--        android:text="Număr apartament:"-->
+<!--        android:textColor="@color/black"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/tv_titluIntretinereDialog" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/ed_nrApIntretinereDialog"-->
+<!--        android:layout_width="250dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:textColor="@color/black"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.65"-->
+<!--        app:layout_constraintStart_toEndOf="@id/tv_nrApIntretinereDialog"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/ed_titluDialog" />-->
+
+    <TextView
+        android:id="@+id/tv_titluIntretinereDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Titlu document:"
+        android:textSize="17dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/ed_titluDialog"
+        android:layout_width="200dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@id/tv_titluIntretinereDialog"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_serviciuAdminDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="Serviciu administrație:"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_titluIntretinereDialog" />
+
+    <EditText
+        android:id="@+id/ed_serviciuAdminDialog"
+        android:layout_width="153dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@id/tv_serviciuAdminDialog"
+        app:layout_constraintTop_toBottomOf="@id/ed_titluDialog" />
+
+    <TextView
+        android:id="@+id/tv_pazaDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="44dp"
+        android:text="Paza:"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_serviciuAdminDialog" />
+
+    <EditText
+        android:id="@+id/ed_pazaDialog"
+        android:layout_width="288dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@id/tv_pazaDialog"
+        app:layout_constraintTop_toBottomOf="@id/ed_serviciuAdminDialog" />
+
+    <TextView
+        android:id="@+id/tv_curateniaDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:text="Curățenia:"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_pazaDialog" />
+
+    <EditText
+        android:id="@+id/ed_curateniaDialog"
+        android:layout_width="247dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@id/tv_curateniaDialog"
+        app:layout_constraintTop_toBottomOf="@id/ed_pazaDialog" />
+
+    <TextView
+        android:id="@+id/tv_fondReparatiiDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
+        android:text="Fond reparații:"
+        android:textSize="17dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_curateniaDialog" />
+
+    <EditText
+        android:id="@+id/ed_fondReparatiiDialog"
+        android:layout_width="214dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@id/tv_fondReparatiiDialog"
+        app:layout_constraintTop_toBottomOf="@id/ed_curateniaDialog" />
+
+    <TextView
+        android:id="@+id/tv_fondCheltuieliNeprevazuteDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:text="Fond cheltuieli neprevăzute:"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_fondReparatiiDialog" />
+
+    <EditText
+        android:id="@+id/ed_fondCheltuieliNeprevazuteDialog"
+        android:layout_width="116dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@id/tv_fondCheltuieliNeprevazuteDialog"
+        app:layout_constraintTop_toBottomOf="@id/ed_fondReparatiiDialog" />
+
+    <TextView
+        android:id="@+id/tv_salubrizareDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="Salubrizarea:"
+        android:textSize="17dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_fondCheltuieliNeprevazuteDialog" />
+
+    <EditText
+        android:id="@+id/ed_salubrizareDialog"
+        android:layout_width="227dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@id/tv_salubrizareDialog"
+        app:layout_constraintTop_toBottomOf="@id/ed_fondCheltuieliNeprevazuteDialog" />
+
+    <TextView
+        android:id="@+id/tv_luminaComunaDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="44dp"
+        android:text="Curent spațiu comun:"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_salubrizareDialog" />
+
+    <EditText
+        android:id="@+id/ed_luminaComunaDialog"
+        android:layout_width="168dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@id/tv_luminaComunaDialog"
+        app:layout_constraintTop_toBottomOf="@id/ed_salubrizareDialog" />
+
+    <TextView
+        android:id="@+id/tv_apaDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:text="Apa:"
+        android:textSize="17dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_luminaComunaDialog" />
+
+
+    <EditText
+        android:id="@+id/ed_apaDialog"
+        android:layout_width="299dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/addIntretinereBtnDialog"
+        app:layout_constraintStart_toEndOf="@id/tv_apaDialog"
+        app:layout_constraintTop_toBottomOf="@id/ed_luminaComunaDialog"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/addIntretinereBtnDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:layout_marginStart="60dp"
+        android:background="@drawable/roundbtn"
+        android:text="Adaugă"
+
+        app:layout_constraintEnd_toStartOf="@id/cancelAddIntretinereBtnDialog"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ed_apaDialog" />
+
+    <Button
+        android:id="@+id/cancelAddIntretinereBtnDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/roundbtn"
+        android:text="Anulare"
+        app:layout_constraintStart_toEndOf="@id/addIntretinereBtnDialog"
+        app:layout_constraintTop_toBottomOf="@id/ed_apaDialog" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

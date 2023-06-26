@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -18,11 +17,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.licentaapp.Clase.Asociatie;
+import com.example.licentaapp.Clase.Singleton;
 import com.example.licentaapp.Clase.SpatiuVerde;
-import com.example.licentaapp.Fragmente.AsociatiiFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -43,6 +41,7 @@ public class RecycleViewAsociatiiAdapter extends RecyclerView.Adapter<RecycleVie
     ArrayList<Asociatie> asociatiiList;
     DatabaseReference reference;
     FirebaseUser user;
+
 
     public RecycleViewAsociatiiAdapter(Context context, ArrayList<Asociatie> asociatiiList) {
         this.context = context;
@@ -180,6 +179,7 @@ public class RecycleViewAsociatiiAdapter extends RecyclerView.Adapter<RecycleVie
 
         });
 
+
         holder.removeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -210,10 +210,13 @@ public class RecycleViewAsociatiiAdapter extends RecyclerView.Adapter<RecycleVie
             @Override
             public void onClick(View v) {
                 int position = holder.getBindingAdapterPosition();
-                Intent intent=new Intent(context,ApartamenteActivity.class);
                 Asociatie asociatie = asociatiiList.get(position);
+                Intent intent=new Intent(context,ApartamenteActivity.class);
                 intent.putExtra("asociatieNume", asociatie.getNumeAsociatie());
                 context.startActivity(intent);
+
+                Singleton.getInstance().setAsociatieNume(asociatie.getNumeAsociatie());
+
 
             }
         });
@@ -303,8 +306,8 @@ public class RecycleViewAsociatiiAdapter extends RecyclerView.Adapter<RecycleVie
 
 
 
-
         }
     }
+
 
 }

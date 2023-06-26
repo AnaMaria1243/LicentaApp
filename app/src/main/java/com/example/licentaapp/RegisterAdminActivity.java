@@ -1,6 +1,7 @@
 package com.example.licentaapp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -36,6 +37,8 @@ public class RegisterAdminActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_admin);
+        ActionBar actionBar=getSupportActionBar();
+        actionBar.setTitle("Creare cont administrator");
 
         til_numeadmin=findViewById(R.id.til_numeadmin);
         til_prenumeadmin=findViewById(R.id.til_prenumeadmin);

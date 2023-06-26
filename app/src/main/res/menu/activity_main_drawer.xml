@@ -9,12 +9,12 @@
             android:icon="@drawable/ic_baseline_apartment_24"
             android:title="Asociații de proprietari" />
         <item
-            android:id="@+id/nav_contacte"
-            android:icon="@drawable/ic_baseline_perm_contact_calendar_24"
-            android:title="Contact proprietari" />
-        <item
             android:id="@+id/nav_calculate"
             android:icon="@drawable/ic_baseline_calculate_24"
             android:title="Gestionare documente" />
+        <item
+            android:id="@+id/nav_contacte"
+            android:icon="@drawable/ic_baseline_perm_contact_calendar_24"
+            android:title="Forum" />
     </group>
 </menu>

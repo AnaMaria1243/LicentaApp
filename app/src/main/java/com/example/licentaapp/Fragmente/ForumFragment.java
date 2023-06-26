@@ -16,9 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.licentaapp.Clase.Mesaj;
 import com.example.licentaapp.MesajeAdapter;
-import com.example.licentaapp.PDFAdapter;
 import com.example.licentaapp.R;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;

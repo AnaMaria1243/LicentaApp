@@ -2,7 +2,11 @@ package com.example.licentaapp.Fragmente;
 
 import static androidx.constraintlayout.widget.ConstraintLayoutStates.TAG;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -18,6 +22,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -66,7 +71,7 @@ import es.dmoral.toasty.Toasty;
 public class HomeFragment extends Fragment {
     DatabaseReference reference;
     FirebaseUser user;
-    TextView adresa,nrApartament,totalPlata,istoricIndex;
+    TextView adresa,nrApartament,totalPlata,nrPersoane;
     Button payHomeBtn,sendIndex;
     TextInputLayout indexInput;
     ListView listView;
@@ -80,6 +85,7 @@ public class HomeFragment extends Fragment {
 
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -90,7 +96,7 @@ public class HomeFragment extends Fragment {
         nrApartament=view.findViewById(R.id.nrApartamentInput);
         totalPlata=view.findViewById(R.id.sumaPlataInput);
         payHomeBtn=view.findViewById(R.id.btn_platesteHome);
-       // istoricIndex=view.findViewById(R.id.istoricIndexTxtVw);
+        nrPersoane=view.findViewById(R.id.nrPersoaneInput);
         sendIndex=view.findViewById(R.id.trimiteIndex);
         indexInput=view.findViewById(R.id.indexInput);
         listView=view.findViewById(R.id.listViewIndex);
@@ -168,23 +174,17 @@ public class HomeFragment extends Fragment {
 
 
 
-//        payHomeBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contentFrame, new PayFragment()).commit();
-//            }
-//        });
-
-
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String txt_firstname = dataSnapshot.child("adresa").getValue(String.class);
                 String txt_lastname = dataSnapshot.child("apartament").getValue(String.class);
                 String plata=dataSnapshot.child("sumaDePlata").getValue(String.class);
+                String nrPers=dataSnapshot.child("nrPersoane").getValue(String.class);
                 adresa.setText(txt_firstname);
                 nrApartament.setText(txt_lastname);
                 totalPlata.setText(plata);
+                nrPersoane.setText(nrPers);
             }
 
             @Override
@@ -197,6 +197,7 @@ public class HomeFragment extends Fragment {
             reference = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid());
             reference.addListenerForSingleValueEvent(valueEventListener);
             //reference.child("sumaDePlata").setValue("300");
+//            reference.child("nrPersoane").setValue("0");
             reference.child("index").addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -231,6 +232,38 @@ public class HomeFragment extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        nrPersoane.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                View dialogView = getLayoutInflater().inflate(R.layout.nrpersoaneapartamentedit, null);
+                builder.setView(dialogView);
+
+                EditText et_nrPers = dialogView.findViewById(R.id.editTxtNrPers);
+
+                builder.setPositiveButton("Salvează", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String value = et_nrPers.getText().toString();
+
+                        reference.child("nrPersoane").setValue(value);
+                        nrPersoane.setText(value);
+                        dialog.dismiss();
+                    }
+                });
+
+                builder.setNegativeButton("Anulează", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
 
         return view;
     }

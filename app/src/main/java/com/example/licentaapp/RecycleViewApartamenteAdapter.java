@@ -1,6 +1,7 @@
 package com.example.licentaapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.licentaapp.Clase.Apartament;
+import com.example.licentaapp.Clase.Asociatie;
 
 import java.util.ArrayList;
 
@@ -39,6 +41,17 @@ public class RecycleViewApartamenteAdapter extends RecyclerView.Adapter<RecycleV
         holder.numeProprietarApartament.setText(apartament.getNumeProprietar());
         holder.suprafataApartament.setText(apartament.getSuprafataApartament());
         holder.contactApartament.setText(apartament.getContact());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getBindingAdapterPosition();
+                Intent intent=new Intent(context,SituatieApartamenteActivity.class);
+                Apartament ap=listaApartamente.get(position);
+                intent.putExtra("nrAp", ap.getNrApartament());
+                context.startActivity(intent);
+            }
+        });
 
 
     }

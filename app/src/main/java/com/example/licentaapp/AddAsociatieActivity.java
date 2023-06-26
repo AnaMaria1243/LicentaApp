@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -29,6 +30,7 @@ public class AddAsociatieActivity extends AppCompatActivity {
     ArrayList<HashMap> asociatiiList=new ArrayList<>();
     ArrayAdapter<HashMap> adapter;
 
+
     Button addBtn,cancelBtn;
     TextInputLayout numeAsociatie,adresaAsociatie,nrEtaje,totalAp,presedinte,suprafataComuna;
     RadioGroup rgSpatiuVerde;
@@ -37,6 +39,9 @@ public class AddAsociatieActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_asociatie);
+//        ActionBar actionBar=getActionBar();
+//        actionBar.setTitle("Adăugare asociație de proprietari");
+
 
         numeAsociatie=findViewById(R.id.til_numeAsociatie);
         adresaAsociatie=findViewById(R.id.til_adresaAsociatie);
