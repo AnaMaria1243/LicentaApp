@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.licentaapp.Clase.Asociatie;
 import com.example.licentaapp.R;
+import com.example.licentaapp.RecycleViewGestionareAsociatiiAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -41,7 +42,7 @@ public class GestionareFragment extends Fragment {
 
     FloatingActionButton fab;
     RecyclerView recyclerView;
-    //RecycleViewGestionareAdapter adapter;
+    RecycleViewGestionareAsociatiiAdapter adapter;
     ArrayList<Asociatie> asociatiiList;
 
 
@@ -56,8 +57,8 @@ public class GestionareFragment extends Fragment {
         reference = FirebaseDatabase.getInstance().getReference().child("Administratori").child(user.getUid());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         asociatiiList=new ArrayList<>();
-       // adapter=new RecycleViewGestionareAdapter(getContext(),asociatiiList);
-       // recyclerView.setAdapter(adapter);
+        adapter=new RecycleViewGestionareAsociatiiAdapter(getContext(),asociatiiList);
+        recyclerView.setAdapter(adapter);
         reference.child("Asociatii").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -66,10 +67,10 @@ public class GestionareFragment extends Fragment {
                     Asociatie asociatie=dataSnapshot.getValue(Asociatie.class);
                     if (!asociatiiList.contains(asociatie)) {
                         asociatiiList.add(asociatie);
-                     //   adapter.notifyDataSetChanged();
+                        adapter.notifyDataSetChanged();
                     }
                 }
-              //  adapter.notifyDataSetChanged();
+               adapter.notifyDataSetChanged();
                 recyclerView.scrollToPosition(asociatiiList.size()-1);
             }
 

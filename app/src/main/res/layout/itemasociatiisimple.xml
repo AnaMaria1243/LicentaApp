@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/casetarecycleview">
+        android:background="@drawable/bordertextinputdark">
 
 
         <LinearLayout
@@ -25,20 +25,17 @@
             android:layout_marginTop="15dp">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Numele asociației:"
-                android:textColor="@color/white"
-                android:textSize="18dp"
-                android:textStyle="bold"/>
-            <TextView
                 android:id="@+id/tvNumeAsociatieGestiune"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="nume"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="18dp"
-                android:layout_marginLeft="8dp"/>
+                android:textStyle="bold"
+                android:layout_marginLeft="8dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:textAllCaps="true"/>
 
         </LinearLayout>
 
@@ -54,18 +51,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Adresa:"
-                android:textColor="@color/white"
-                android:textSize="18dp"
-                android:textStyle="bold"/>
+                android:textColor="@color/black"
+                android:textSize="18dp" />
             <TextView
                 android:id="@+id/tvAdresaAsociatieGestiune"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="adresa"
-                android:textColor="@color/white"
-                android:textStyle="bold"
+                android:textColor="@color/black"
                 android:textSize="18dp"
-                android:layout_marginLeft="8dp"/>
+                android:layout_marginLeft="8dp"
+                android:layout_marginBottom="20dp"/>
 
         </LinearLayout>
 

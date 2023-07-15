@@ -228,18 +228,9 @@ public class RecycleViewAsociatiiAdapter extends RecyclerView.Adapter<RecycleVie
 
 
     private void deleteItem(int position) {
-        // Obțineți elementul din lista de date asociată cu RecyclerView la poziția dată
         Asociatie asociatie = asociatiiList.get(position);
-
-        // Ștergeți elementul din lista de date asociată cu RecyclerView
         asociatiiList.remove(position);
-
-        // Notificați adaptorul despre ștergerea elementului pentru a actualiza RecyclerView
         notifyItemRemoved(position);
-
-        // Ștergeți elementul din baza de date Firebase utilizând criterii de identificare
-
-        // Exemplu: Ștergeți asociatia pe baza numelui și adresei
         deleteAsociatieFromFirebase(asociatie.getNumeAsociatie(), asociatie.getAdresaAsociatie());
     }
 

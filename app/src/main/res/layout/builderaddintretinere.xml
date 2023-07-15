@@ -49,7 +49,8 @@
         android:layout_marginTop="4dp"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@id/tv_titluIntretinereDialog"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:inputType="numberDecimal"/>
 
     <TextView
         android:id="@+id/tv_serviciuAdminDialog"
@@ -71,7 +72,8 @@
         android:layout_marginTop="16dp"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@id/tv_serviciuAdminDialog"
-        app:layout_constraintTop_toBottomOf="@id/ed_titluDialog" />
+        app:layout_constraintTop_toBottomOf="@id/ed_titluDialog"
+        android:inputType="numberDecimal"/>
 
     <TextView
         android:id="@+id/tv_pazaDialog"
@@ -93,7 +95,8 @@
         android:layout_marginTop="16dp"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@id/tv_pazaDialog"
-        app:layout_constraintTop_toBottomOf="@id/ed_serviciuAdminDialog" />
+        app:layout_constraintTop_toBottomOf="@id/ed_serviciuAdminDialog"
+        android:inputType="numberDecimal"/>
 
     <TextView
         android:id="@+id/tv_curateniaDialog"
@@ -115,7 +118,8 @@
         android:layout_marginTop="20dp"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@id/tv_curateniaDialog"
-        app:layout_constraintTop_toBottomOf="@id/ed_pazaDialog" />
+        app:layout_constraintTop_toBottomOf="@id/ed_pazaDialog"
+        android:inputType="numberDecimal"/>
 
     <TextView
         android:id="@+id/tv_fondReparatiiDialog"
@@ -137,7 +141,8 @@
         android:layout_marginTop="16dp"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@id/tv_fondReparatiiDialog"
-        app:layout_constraintTop_toBottomOf="@id/ed_curateniaDialog" />
+        app:layout_constraintTop_toBottomOf="@id/ed_curateniaDialog"
+        android:inputType="numberDecimal"/>
 
     <TextView
         android:id="@+id/tv_fondCheltuieliNeprevazuteDialog"
@@ -159,7 +164,8 @@
         android:layout_marginTop="16dp"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@id/tv_fondCheltuieliNeprevazuteDialog"
-        app:layout_constraintTop_toBottomOf="@id/ed_fondReparatiiDialog" />
+        app:layout_constraintTop_toBottomOf="@id/ed_fondReparatiiDialog"
+        android:inputType="numberDecimal"/>
 
     <TextView
         android:id="@+id/tv_salubrizareDialog"
@@ -181,7 +187,8 @@
         android:layout_marginTop="12dp"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@id/tv_salubrizareDialog"
-        app:layout_constraintTop_toBottomOf="@id/ed_fondCheltuieliNeprevazuteDialog" />
+        app:layout_constraintTop_toBottomOf="@id/ed_fondCheltuieliNeprevazuteDialog"
+        android:inputType="numberDecimal"/>
 
     <TextView
         android:id="@+id/tv_luminaComunaDialog"
@@ -203,7 +210,8 @@
         android:layout_marginTop="16dp"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@id/tv_luminaComunaDialog"
-        app:layout_constraintTop_toBottomOf="@id/ed_salubrizareDialog" />
+        app:layout_constraintTop_toBottomOf="@id/ed_salubrizareDialog"
+        android:inputType="numberDecimal"/>
 
     <TextView
         android:id="@+id/tv_apaDialog"
@@ -228,7 +236,8 @@
         app:layout_constraintBottom_toTopOf="@id/addIntretinereBtnDialog"
         app:layout_constraintStart_toEndOf="@id/tv_apaDialog"
         app:layout_constraintTop_toBottomOf="@id/ed_luminaComunaDialog"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:inputType="numberDecimal"/>
 
     <Button
         android:id="@+id/addIntretinereBtnDialog"

@@ -39,10 +39,7 @@ public class AddAsociatieActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_asociatie);
-//        ActionBar actionBar=getActionBar();
-//        actionBar.setTitle("Adăugare asociație de proprietari");
-
-
+        setTitle("Creare asociație de proprietari");
         numeAsociatie=findViewById(R.id.til_numeAsociatie);
         adresaAsociatie=findViewById(R.id.til_adresaAsociatie);
         nrEtaje=findViewById(R.id.til_nrEtajeAsociatie);

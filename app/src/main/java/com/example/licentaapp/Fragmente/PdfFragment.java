@@ -1,6 +1,7 @@
 package com.example.licentaapp.Fragmente;
 
 import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.licentaapp.Clase.Apartament;
 import com.example.licentaapp.PDFAdapter;
@@ -60,8 +62,8 @@ public class PdfFragment extends Fragment {
         try{
             user = FirebaseAuth.getInstance().getCurrentUser();
             reference = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("documente");
-        Query query = reference.orderByChild("titlu").equalTo(dosarNume);
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            Query query = reference.orderByChild("titlu").equalTo(dosarNume);
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dosarSnapshot : dataSnapshot.getChildren()) {
@@ -75,7 +77,8 @@ public class PdfFragment extends Fragment {
                                 String numePdf = snapshot.child("numePdf").getValue(String.class);
                                 if(!documentsList.contains(numePdf)){
                                 documentsList.add(numePdf);
-                                adapter.notifyDataSetChanged();}
+                                adapter.notifyDataSetChanged();
+                                    System.out.println(message);}
                             }
                             adapter.notifyDataSetChanged();;
                         }
@@ -92,21 +95,42 @@ public class PdfFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });;
+        });
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+//        listViewPdf.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                try{
+//                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(message));
+//                startActivity(intent);
+//                } catch (ActivityNotFoundException e) {
+//                    e.printStackTrace();
+//                }
+//
+//
+//            }
+//        });
+
+
         listViewPdf.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(message));
-//               Toasty.success(getContext(),"Document descarcat cu succes!", Toast.LENGTH_SHORT).show();
-                startActivity(intent);
-
-
+                if (message != null && !message.isEmpty()) {
+                    try {
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(message));
+                        startActivity(intent);
+                    } catch (ActivityNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    Toast.makeText(getContext(), "Invalid URL", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
 
         return view;
     }
