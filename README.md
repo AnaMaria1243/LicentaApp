@@ -1,17 +1,18 @@
 # LicentaApp
 
+![functionalitate creare cont](https://github.com/AnaMaria1243/LicentaApp/assets/114759453/04f4dbfd-a584-45f3-a9e1-697c8eb3d4b9)
 
-![functionalitate creare cont](https://github.com/AnaMaria1243/LicentaApp/assets/114759453/097675e1-08d1-41e3-8789-e8e69c2c265f)
+![HomeFragment](https://github.com/AnaMaria1243/LicentaApp/assets/114759453/e195f27a-c628-49b8-9657-d952b3e320e2)
 
-![HomeFragment](https://github.com/AnaMaria1243/LicentaApp/assets/114759453/b5020c26-4318-4bc3-aef0-eb29595be40c)
+![aaaaa](https://github.com/AnaMaria1243/LicentaApp/assets/114759453/9d2ff2c8-b336-400b-8609-d070cb243d8b)
 
-![aaa](https://github.com/AnaMaria1243/LicentaApp/assets/114759453/6a2a451e-888d-4af4-aef5-74eca8c9d196)
-
-
-![Fff](https://github.com/AnaMaria1243/LicentaApp/assets/114759453/60cda286-f021-49bf-aeb9-d0dcce02a876)
+![Fff](https://github.com/AnaMaria1243/LicentaApp/assets/114759453/cf8c6c68-a473-40ad-a413-fb61339c6f4b)
 
 
-![adminMenu](https://github.com/AnaMaria1243/LicentaApp/assets/114759453/78d4cb37-5355-4e35-9056-96e5b185867e)
+![adminMenu](https://github.com/AnaMaria1243/LicentaApp/assets/114759453/f8e3e7e6-b5f2-4820-972e-b05fbe22b2a6)
 
 
-![ddda](https://github.com/AnaMaria1243/LicentaApp/assets/114759453/cf1fd5f0-a8b9-419f-a309-d2203945f85d)
+![ddda](https://github.com/AnaMaria1243/LicentaApp/assets/114759453/180704e9-419c-4278-92a1-870e799f097f)
+
+
+
